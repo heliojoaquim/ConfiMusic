@@ -18,9 +18,8 @@ def get_songs_response(artist_name):
     response = table.get_item(Key={'artist_name': artist_name})
 
     if 'Item' in response:
-        transaction_id = response['Item']['transaction_id']
+        transaction_id = response['Item']['artist_name']
         cache_enabled = response['Item'].get('cache_enabled', True)
-        print(cache_enabled)
         cached_data = redis_client.get(artist_name)
 
         if cached_data and cache_enabled:

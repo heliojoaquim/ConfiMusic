@@ -1,8 +1,6 @@
 from flask import request
-
 import json
-from views.database import redis_client, table
-from views.config import time_out
+from views.database import redis_client, table, time_out
 
 def cache_check(artist_name):
     cache = request.args.get('cache', default='True')
