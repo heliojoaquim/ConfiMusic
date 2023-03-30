@@ -41,7 +41,7 @@ def popular_songs(artist_name):
         cache_enabled = response['Item'].get('cache_enabled', True)
         # Verifica se os dados já estão em cache no Redis
         cached_data = redis_client.get(artist_name)
-        if cached_data and cache_enabled:
+        if cached_data:
             songs_response = json.loads(cached_data)
         else:
             songs_response = retrieve_songs_from_genius_api(artist_name)
