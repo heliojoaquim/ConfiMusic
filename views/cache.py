@@ -1,8 +1,7 @@
 from flask import request
 
 import json
-from views.redis_config import redis_client
-from views.dynamodb import table
+from views.database import redis_client, table
 from views.config import time_out
 
 def cache_check(artist_name):
