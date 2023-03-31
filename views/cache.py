@@ -19,14 +19,3 @@ def cache_check(artist_name):
             UpdateExpression='SET cache_enabled = :val',
             ExpressionAttributeValues={':val': True}
         )
-
-def get_cached_data(artist_name):
-    # Verifica se os dados já estão em cache no Redis
-    cached_data = redis_client.get(artist_name)
-    if cached_data:
-        return json.loads(cached_data)
-    else:
-        return None
-
-def set_cached_data(artist_name, data):
-    redis_client.setex(artist_name, time_out, json.dumps(data))
