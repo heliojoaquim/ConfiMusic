@@ -149,9 +149,47 @@ Para criar a tabela usada nesse projeto no seu DynamoDB execute o seguinte coman
 python utils/criar_tabela.py
 ```
 
-## Executando o Serviço
+## Teste Unitário
 
-Para executar o serviço, você pode rodar o seguinte comando na raiz do projeto:
+Para executar o teste unitário executer o seguinte comando na raiz do projeto:
+
+```
+python test_unitario.py
+```
+
+## Docker
+
+Para rodar essa API em um container no Docker siga esses passos:
+
+1. Na pasta raiz do projeto execute esse comando para construi a imagem no Docker:
+
+    ```cmd
+    docker build --no-cache -t confimusic .    
+    ```
+
+2. Após construir a imagem você deve ser atentar a uma coisa, o arquivo '.env' na raiz do projeto possui os dados do projeto executado em python, para executar o projeto no Docker é necessário configurar um arquivo .env separado do principal, dentro de alguma pasta no projeto sem ser a pasta raiz.
+3. Após criar esse arquivo views/.env.docker, por exemplo, é necessário preencher com dados parecidos com o arquivo .env mas com algumas alterações para funcionar no Docker, exemplo:
+
+    ```.env.docker
+    REDIS_HOST=HOST DA SUA IMAGEM DO DOCKER
+    >Para obter o host da imagem do Docker execute'docker ps' no terminal, procure o id da imagem do redis  'docker inspect id_da_imagem' e procure pelo campo: "IPAddress" e copie e cole no REDIS_HOST
+    REDIS_PORT=PORTA QUE O CONTAINER ESTÁ SENDO EXECUTADA
+    #REDIS_PASSWORD= AQUI SE SEU CONTAINER PRECISA É SÓ REMOVER O # DE COMENTÁRIO E DIGITAR A SENHA
+    GENIUS_API_TOKEN=ACCESS TOKEN DA API DO GENIUS
+    DYNAMODB_REGION=REGIÃO QUE FOI CRIADA A TABELA NO DYNAMODB
+    DYNAMODB_TABLE_NAME=NOME DA TABELA CRIADA NO DYNAMODB
+    ```
+
+4. Após a configuração das variáveis de ambiente do Docker execute esse comando, para rodar a imagem:
+
+    ```cmd
+    docker run --env-file=views/<arquivo_env_criado_para_o_docker> -p 5000:5000 confimusic
+    > exemplo: docker run --env-file=views/.env.docker -p 5000:5000 confimusic
+    ```
+
+## Executando a API
+
+Para executar a API, você pode rodar o seguinte comando na raiz do projeto:
 
 ```
 python app.py
