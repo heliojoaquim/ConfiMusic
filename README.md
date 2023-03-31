@@ -31,13 +31,17 @@ Para configurar o ambiente, você deve seguir os seguintes passos:
 5. Crie um arquivo `.env`, na pasta raiz do projeto, com as seguintes variáveis de ambiente:
 
     ```
-    REDIS_HOST="Host do Redis"
-    REDIS_PORT="Sua porta do Redis"
-    REDIS_PASSWORD="Senha do Redis(SE HOUVER)"
-    GENIUS_API_TOKEN="Genius access token"
-    DYNAMODB_REGION="Região que a tabela do DynamoDB foi criada"
-    DYNAMODB_TABLE_NAME="Nome da tabela no DynamoDB"
+    REDIS_HOST=<Host do Redis> 
+    REDIS_PORT=<Sua porta do Redis>
+    REDIS_PASSWORD="<Senha do Redis(SE HOUVER)>"
+    GENIUS_API_TOKEN=<Genius access token>
+    DYNAMODB_REGION='<Região que a tabela do DynamoDB foi criada>'
+    DYNAMODB_TABLE_NAME=<Nome da tabela no DynamoDB>
+    
     ```
+
+>A onde estiver "" e '' acima, também colocar no arquivo .env, por exemplo: DYNAMODB_REGION='sa-east-1'
+DYNAMODB_TABLE_NAME=ConfiMusic
 
 ## Configuração do Redis
 
